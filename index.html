@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/f271531254.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
@@ -16,40 +20,34 @@
 <body>
 
     <!-- <div class="container"> -->
-        <h1 class="header col-lg-12">Weather Dashboard</h1>
-        <div class="inputBox">
-            <div class="row">
+    <h1 class="header text-center">Weather Dashboard</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="col-lg-3">
                 <h3>Search for a City:</h3>
-                <form class="col-lg-3">
-                    <input type="text" id="findCity" placeholder="Enter a City Here">
-                    <button class="searchBtn" type="button" id="citySearch">Search</button>
-                </form>
-                <ul class="list history"></ul>
-            </div>
-            <main>
-                <div class="row">
-                    <div class="card">
+                <input class="form-control" type="text" id="findCity" placeholder="Enter a City Here">
+                <button class="searchBtn" type="button" id="citySearch">Search</button>
+        </div>
+        <ul class="list history"></ul>
+        </aside>
+    </div>
 
-                    </div>
-                </div>
-                <div id="5day" class="row col-lg-9">
-                    <h2>5-Day Forecast</h2>
-                    <div id="today"></div>
-                    <div id="5dayList" class="card"></div>
-                    <!-- <div id="weatherToday" class="card"> -->
-                    <!-- style="width: 18rem;" -->
-                    <!-- <div class="card-body">
+    <div class="row col-lg-9">
+        <div id="today"></div>
+        <div id="5dayList" class="card-deck"></div>
+        <!-- <div id="weatherToday" class="card"> -->
+        <!-- style="width: 18rem;" -->
+        <!-- <div class="card-body">
                         <h5 class="card-title">Date</h5>
                         <i class="fa-solid fa-sun"></i>
                         <p class="card-text">Temp:</p>
                         <p class="card-text">Humidity:</p>
                         <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                </div>
-            </div>
     </div>
     </div>
     </div>
-    </main>
+    </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>

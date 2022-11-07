@@ -47,7 +47,7 @@ $(document).ready(function () {
   }
 
   // Local Storage Info
-  let savedCities = json.parse(localStorage.getItems("history")) || [];
+  let savedCities = JSON.parse(localStorage.getItem("history")) || [];
   if (savedCities.length > 0) {
     weatherFunc(savedCities[savedCities.length - 1]);
   }
@@ -64,7 +64,7 @@ $(document).ready(function () {
   })
 
   function weatherFunc(searchCity) {
-    fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + citySearch + "&limit=5&appid=" + apiKey + "units=imperial")
+    fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + citySearch + "&limit=5&appid=" + apiKey + "&units=imperial")
       .then(res => res.json())
       .then(function (data) {
         if (savedCities.indexOf(searchCity) === -1) {
@@ -79,11 +79,11 @@ $(document).ready(function () {
         let card = $("<div>").addClass("card");
         let cardBody = $("<div>").addClass("card-body");
         // wind.speed Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour.
-        let wind = $("<p>").addClass("cardText").text("Wind: " + data.wind.speed + "MPH");
+        let wind = $("<p>").addClass("card-text").text("Wind: " + data.wind.speed + "MPH");
         // main.humidity Humidity, %
-        let humidity = $("<p>").addClass("cardText").text("Humidity: " + data.main.humidity + " %");
+        let humidity = $("<p>").addClass("card-text").text("Humidity: " + data.main.humidity + " %");
         // main.temp Temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
-        let temp = $("<p>").addClass("cardText").text("Temperature: " data.main.temp + " F");
+        let temp = $("<p>").addClass("card-text").text("Temperature: " + data.main.temp + " F");
         // coord.lon City geo location, longitude
         let longitude = data.coord.lon;
         let latitude = data.coord.lat;
@@ -98,24 +98,38 @@ $(document).ready(function () {
       })
 
   }
-  function forecast(searchTerm)
-  fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + citySearch + "&limit=5&appid=" + apiKey + "units=imperial")
+  function forecast(searchTerm) {
+  fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + citySearch + "&limit=5&appid=" + apiKey + "&units=imperial")
   // .then(function(data) {
   //   console.log(data);
   //   $("#5dayList").html()
-}
+
+  // Creating and appending the 5 day forecast information
   .then(function (data) {
     console.log(data);
-    $("#5dayList").html("<h3>5-Day Forecast: </h4>").append("div class=\"row\">);
+    $("#5dayList").html("<h3>5-Day Forecast: </h4>").append("div class=\"row\">");
         for (var i = o; i < data.list.length; i++) {
+          if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
+
+            let titleFive = $("<h3>").addClass("card-title").text(new Date(data.list[i].dt_txt).toLocaleDateString());
+            let imgFive = $("<img>").attr("src", "https://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png");
+            let colFive = $("<div>").addClass("col-md-2.5");
+            let cardFive = $("<div>").addClass("card bg-primary text-white");
+            let cardBodyFive = $("<div>").addClass("card-body p-2");
+            let humidFive = $("<p>").addClass("card-text").text("Humidity: " + data.list[i].main.humidity + "%");
+            let tempFive = $("<p>").addClass("card-text").text("Temperature: " + data.list[i].main.temp + " °F");
+  
+            colFive.append(cardFive.append(cardBodyFive.append(titleFive, imgFive, tempFive, humidFive)));
+            $("#forecast .row").append(colFive);
     }
-  })
+  }
       // .then(data => console.log(data))
       // .catch(err => alert('Incorrect city name'))
 
 
 
 })
+  }})
 
 
 
