@@ -2,6 +2,8 @@
 
 ## Description
 
+The objective of the assignment is to build a functioning weather application utilizing the openWeatherApi to fetch and display the relevant information for a 5-day forecast. A user should be able to find weather information related to a searched city
+
 ## User Story
 
 * **AS** A traveler
@@ -21,6 +23,10 @@
 * **THEN** I am again presented with current and future conditions for that city
 
 ## Steps
+
+Creating a functioning system required finding the correct way to fetch the API url. A programmer would need to make an account on the site to get the appropriate API key to access the necessary information. It is also important to consider what you will be displaying. For example, I used fahrenheit since I live in the United States, therefore you need to include units=imperial in the parameters.
+
+Most of the functions in the JavaScript will help build the necessary foundation of the webpage display. Without it, there is only a couple of headers and a search bar. 
 
 ## Screenshot
 
